@@ -8,15 +8,6 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-strategy:
-  matrix:
-    Python35:
-      PYTHON_VERSION: '3.5'
-    Python36:
-      PYTHON_VERSION: '3.6'
-    Python37:
-      PYTHON_VERSION: '3.7'
-  maxParallel: 3
 
 steps:
 - task: UsePythonVersion@0
@@ -29,6 +20,7 @@ steps:
   inputs:
     scriptSource: 'inline'
     script: |
+      pushd Application
       """Search all subdirectories for `manage.py`."""
       from glob import iglob
       from os import path
@@ -54,5 +46,5 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: "**/TEST-*.xml"
-    testRunTitle: 'Python $(PYTHON_VERSION)'
+    testRunTitle: 'Python tests'
   condition: succeededOrFailed()
