@@ -20,7 +20,6 @@ steps:
   inputs:
     scriptSource: 'inline'
     script: |
-      cd ./Application
       """Search all subdirectories for `manage.py`."""
       from glob import iglob
       from os import path
@@ -34,7 +33,7 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip setuptools wheel
-    pip install -r requirements.txt
+    pip install -r ./Application/requirements.txt
     pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
 
