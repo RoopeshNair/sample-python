@@ -20,7 +20,7 @@ steps:
   inputs:
     scriptSource: 'inline'
     script: |
-      cwd ./Application
+      cd ./Application
       """Search all subdirectories for `manage.py`."""
       from glob import iglob
       from os import path
